@@ -1,5 +1,6 @@
 .login_window{
-	width: 400px;
+	min-width: 400px;
+	max-width: 960px;
 	padding:20px;
 	top:400px;
 	margin: auto;
