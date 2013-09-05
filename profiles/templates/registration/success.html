@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+
+{% block css_scripts %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="login_window">
+	<p>You have successfully registered. You should recieve your activation email shortly.</p>
+</div>
+{% endblock %}

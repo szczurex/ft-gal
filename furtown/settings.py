@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     #project apps
     'main',
     'profiles',
+    'messages',
 )
 
 # A sample logging configuration. The only tangible logging
