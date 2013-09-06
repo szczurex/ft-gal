@@ -12,7 +12,7 @@ class ActivationCode(models.Model):
     profile         = models.ForeignKey(Profile)
     key             = models.CharField(verbose_name="Key", max_length=32)
     expiration_date = models.DateTimeField(verbose_name="Expiration date")
-    #TODO: activated - for checking
+    activated       = models.BooleanField(verbose_name="Key used", default=False)
     
     def set_up(self, profile):
         key                     = base64.b64encode(hashlib.sha256(str(random.getrandbits(256))).digest(),

@@ -31,13 +31,18 @@ def register_activate(request, key, template="registration/activate.html"):
         key = key[0]
         #check expiration
         if datetime.now() < key.expiration_date:
-            # not expired, activate
-            profile = key.profile
-            profile.is_active = True
-            profile.save()
-            # do not delete key, change it's state
-            #key.
-            msg = "Account activated successfully!"
+            # not expired
+            #activated?
+            if key.activated:
+                msg = "Key already used."
+            else:
+                profile = key.profile
+                profile.is_active = True
+                profile.save()
+                # do not delete key, change it's state
+                key.activated = True
+                key.save()
+                msg = "Account activated successfully!"
         else:
             # TODO: resend a new activation key.
             msg = "Activation key expired"
