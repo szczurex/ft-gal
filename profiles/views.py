@@ -4,7 +4,8 @@ from django.template.context import RequestContext
 from profiles.forms import RegisterForm
 from profiles.models import ActivationCode
 from datetime import datetime
-
+from django.utils import timezone
+from messages.views import queue_message
 
 def register(request, template="registration/register.html"):
     form = RegisterForm()
@@ -15,8 +16,8 @@ def register(request, template="registration/register.html"):
             profile = form.save()
             code = ActivationCode().set_up(profile)
             code.save()
-            # TODO: add mail to queue
-            return redirect(register_success)
+            queue_message(request, 'register_activate', code, profile.email)
+            return redirect('profiles:register_success')
             
     return render(request, template ,{'form':form})
 
@@ -30,7 +31,7 @@ def register_activate(request, key, template="registration/activate.html"):
     if key:
         key = key[0]
         #check expiration
-        if datetime.now() < key.expiration_date:
+        if timezone.now() < key.expiration_date:
             # not expired
             #activated?
             if key.activated:
@@ -45,12 +46,10 @@ def register_activate(request, key, template="registration/activate.html"):
                 msg = "Account activated successfully!"
         else:
             # TODO: resend a new activation key.
-            msg = "Activation key expired"
+            msg = "Activation key has expired."
     else:
         msg = "Key does not exist in our database."
-    # TODO: make template
-    # TODO: parse and check key
-    # TODO: activate account
+
     return render(request, template, {'msg':msg})
 
 
