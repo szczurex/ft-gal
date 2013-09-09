@@ -3,14 +3,32 @@
 	<head>
 		
 		{% block css_scripts %}
+			<link rel="stylesheet" type="text/css" href="{% static 'main/reset.css' %}" />
 			<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" />
 		{% endblock %}
 		
 	</head>
 	<body>
+		<div class="page_header">
+			<div class="header_container">
+				<a>Message center placeholder ▼</a>
+				{% if user.is_authenticated %}
+					<p class="fright">
+						Welcome, {{ user.username }}. <a href="{% url 'profiles:logout' %}">logout</a>
+					</p>
+				{% else %}
+				    <p class="fright">
+				    	<a href="{% url 'profiles:login' %}">log in</a>|<a href="{% url 'profiles:register' %}">register</a>
+				    </p>
+				{% endif %}
+			</div>
+		</div>
+		<div id="page">
+			
 		
-		{% block content %}
-		{% endblock %}
-		
+			{% block content %}
+			
+			{% endblock %}
+		</div>
 	</body>
 </html>
