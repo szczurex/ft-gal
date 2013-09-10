@@ -1,11 +1,23 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.template.context import RequestContext
 from profiles.forms import RegisterForm
-from profiles.models import ActivationCode
+from profiles.models import Profile, ActivationCode
 from datetime import datetime
 from django.utils import timezone
 from messages.views import queue_message
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def index(request, username=None, template="profiles/index.html"):
+    if not username:
+        # TODO: disable login requirement, check if logged in, redirect if not
+        username = request.user.username
+    
+    profile = get_object_or_404(Profile, username__iexact=username)
+
+    return render(request, template ,{'profile':profile})
+
 
 def register(request, template="registration/register.html"):
     form = RegisterForm()
