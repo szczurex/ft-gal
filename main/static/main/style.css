@@ -14,6 +14,15 @@ a, a:visited, a:hover{
 	color:white;
 	text-decoration: none;
 }
+
+a.button{
+	border-radius: 15px;
+	padding:5px 10px;
+	background: #676D7B;
+}
+a.button.blue{background: #244371;}
+a.button.gray{background: #465568;}
+
 input[type=text]{
 	background: #93969D;
 	border-top: 1px solid #3B3E45;
@@ -21,6 +30,13 @@ input[type=text]{
 	border-right: 1px solid#A3A8AE;
 	border-bottom: 1px solid #A3A8AE;
 	padding:2px;
+}
+
+h1{
+	color: #858B97;
+	font-weight: bold;
+	font-size: 24px;
+	text-transform:capitalize;
 }
 
 div.page_header{

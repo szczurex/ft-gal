@@ -7,5 +7,38 @@
 {% endblock %}
 
 {% block content %}
+	{% block profile_header %}
+		<div class="profile_header">
+			<div class="info">
+				<img src="{% static 'profiles/av_placeholder.png' %}" width="100px" height="100px"/>
+				<div class="text">
+					<h1>{{ profile }}</h1>
+					<p>Full name: TODO</p>
+					<p>Registered since: {{ profile.date_joined }}</p>
+					<br>
+					<a href="#" class="button blue">WATCH</a>
+					<a href="#" class="button gray">SEND NOTE</a>
+				</div>
+				
+				<div class="stats">
+					<table>
+						<tr>
+							<td>Pageviews:</td>
+							<td>Comments given:</td>
+						</tr>
+						<tr>
+							<td>Submissions:</td>
+							<td>Journals:</td>
+						</tr>
+						<tr>
+							<td>Comments recieved:</td>
+							<td>Favourites:</td>
+						</tr>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	{% endblock %}
 	<p>{{ profile }}</p>
 {% endblock %}

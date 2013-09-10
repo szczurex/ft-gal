@@ -35,3 +35,22 @@
 .login_window input[type=submit]:hover{
 	background: #FFB444;
 }
+
+.profile_header{
+	height: 120px;
+	background: #191A1E;
+	color: #858B97;
+}
+
+.profile_header .info{
+	float:left;
+	width:400px;
+}
+.profile_header .info img{
+	padding:10px;
+	float:left;
+}
+.profile_header .info .text{
+	padding-top:10px;
+	float:left;
+}
