@@ -37,6 +37,7 @@
 }
 
 .profile_header{
+	color: #858B97;
 	height: 120px;
 	background: #191A1E;
 	color: #858B97;
@@ -54,3 +55,41 @@
 	padding-top:10px;
 	float:left;
 }
+
+.profile_header .stats{
+	float:right;
+	height: 120px;
+	position:relative;
+	width: 510px;
+}
+.profile_header .stats table{
+	margin-top:10px;
+}
+.profile_header .stats table .highlight{
+	color:#A1A2A4;
+}
+.profile_header .stats table td{
+	color: #858B97;
+	padding:2px 5px;
+	font-size:16px;
+}
+.profile_header .stats ul{
+	background: #2A2E31;
+	height:35px;
+	position:absolute;
+	bottom:0;
+	right:0;
+	border-radius: 10px 0 0 0;
+}
+
+.profile_header .stats ul li{
+	display: inline;
+	list-style-type: none;
+	padding:0px 8px;
+	line-height: 40px;
+}
+.profile_header .stats ul li a{
+	color: #595C61;
+	font-size:18px;
+}
+.profile_header .stats ul li a:hover{color: #C87F22;}
