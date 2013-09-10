@@ -7,11 +7,20 @@ body{
 	font-size: 14px;
 	background: url('bg.png') repeat;
 }
+.fleft{float:left;}
+.fright{float:right;}
 
-div#page{
-	margin: 0 auto;
-	width:960px;
-	background:#AAAAAA;
+a, a:visited, a:hover{
+	color:white;
+	text-decoration: none;
+}
+input[type=text]{
+	background: #93969D;
+	border-top: 1px solid #3B3E45;
+	border-left: 1px solid #3B3E45;
+	border-right: 1px solid#A3A8AE;
+	border-bottom: 1px solid #A3A8AE;
+	padding:2px;
 }
 
 div.page_header{
@@ -25,11 +34,53 @@ div.page_header .header_container{
 	width:960px;
 	color: white;
     text-shadow: 0px 1px 1px #000;
+    line-height: 28px;
 }
 
-.fleft{
-	float:left;
+div#page_logo{
+	height:200px;
+	margin: 0 auto;
+	width:960px;
 }
-.fright{
+
+div#page{
+	margin: 0 auto;
+	width:960px;
+}
+
+.top_nav{
+	height:30px;
+	background: #4D6089;
+	border-radius: 10px 10px 0px 0px;
+}
+.top_nav ul{
+	float:left;
+	width:500px;
+}
+.top_nav li{
+	display: inline;
+	list-style-type: none;
+	padding:5px 20px;
+	color:#AABCE4;
+	font-size:16px;
+	line-height: 30px;
+	height: 30px;
+}
+.top_nav li:hover{
+	background: #284974;
+}
+.top_nav li.first:hover{
+	background: #284974;
+	border-radius: 10px 0px 0px 0px;
+}
+.top_nav li a{color:#AABCE4;}
+.top_nav li:hover a{color:#FFFFFF;}
+
+.top_nav .top_search{
+	line-height: 28px;
+	height:30px;
 	float:right;
+	background: #676D7B;
+	padding:0px 10px;
+	border-radius: 0px 10px 0px 0px;
 }
