@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     url(r'^register/activate/(?P<key>[0-9a-zA-Z\-]+)/$', 'profiles.views.register_activate', name="register_activate"),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name':'registration/logout.html'}, name="logout"),
     
-    url(r'^(?P<username>[0-9a-zA-Z\-]+)/$', 'profiles.views.index', name="index"),
+    url(r'^(?P<username>[0-9a-zA-Z\-]+)/$', 'profiles.views.userpage', name="userpage"),
     url(r'^$', 'profiles.views.index', name="index"),
 )

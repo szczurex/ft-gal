@@ -128,6 +128,9 @@ INSTALLED_APPS = (
     #project apps
     'main',
     'profiles',
+    'favourites',
+    'gallery',
+    'journals',
     'messages',
 )
 

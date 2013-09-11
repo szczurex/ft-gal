@@ -3,6 +3,9 @@ from django.template.loader import render_to_string
 from messages.models import TaskedMail
 from django.contrib.sites.models import get_current_site
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
+
 """
     Need to think this whole thing through,
     either pass destination mail as a parameter
@@ -45,3 +48,8 @@ def queue_message(request, msg_code, object, email):
         return True
     
     return False
+
+@login_required
+def index(request, template="messages/index.html"):
+    profile = request.user
+    return render(request, template ,{'profile':profile})
