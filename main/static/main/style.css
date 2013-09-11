@@ -100,3 +100,13 @@ div#page{
 	padding:0px 10px;
 	border-radius: 0px 10px 0px 0px;
 }
+
+
+
+#page .main_content{
+	color: #AABCE4;
+	background: #191A1E;
+	min-height: 400px;
+	width:960px;
+	margin: 0 auto;
+}
