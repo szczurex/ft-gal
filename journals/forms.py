@@ -7,3 +7,4 @@ class JournalForm(forms.ModelForm):
     class Meta:
         model = Journal
         exclude = ('profile', 'date_created', 'date_edited', 'deleted')
+        widgets={'content': forms.Textarea}

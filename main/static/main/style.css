@@ -3,7 +3,8 @@ body{
 	margin:0;
 	padding: 0;
 	background: #AAAAAA;
-	font-family: Arial,Liberation Sans,DejaVu Sans,sans-serif;
+	/*font-family: Arial,Liberation Sans,DejaVu Sans,sans-serif;*/
+	font-family: 'Titillium Web', sans-serif;
 	font-size: 14px;
 	background: url('bg.png') repeat;
 }
@@ -23,13 +24,63 @@ a.button{
 a.button.blue{background: #244371;}
 a.button.gray{background: #465568;}
 
-input[type=text]{
+input[type=text], input[type=password]{
 	background: #93969D;
 	border-top: 1px solid #3B3E45;
 	border-left: 1px solid #3B3E45;
 	border-right: 1px solid#A3A8AE;
 	border-bottom: 1px solid #A3A8AE;
 	padding:2px;
+}
+
+/*input[type=text], input[type=password]{
+	background: #93969D;
+	border: 1px solid #A3A8AE;
+	box-shadow: 0 0 4px #000000 inset;
+    margin: 10px;
+    padding: 6px;
+}*/
+
+label{
+	color: #858B97;
+}
+
+
+
+form.modelform{
+	padding:20px;
+}
+form.modelform ul.errorlist{
+	color: #BB2B2C;
+}
+
+form.modelform input[type=checkbox]{
+	margin:10px;
+}
+
+form.modelform input[type=text],
+form.modelform textarea,
+form.modelform input[type=password]{
+	margin:10px;
+	padding:3px;
+	background: #323232;
+	border: 1px solid #111111;
+	color: #888888;
+}
+
+form.modelform input[type=submit]{
+	border:none;
+	border-radius:5px;
+	background: #111111;
+	color: #888888;
+	padding:5px;
+}
+form.modelform input[type=submit]:hover{
+	background: #222222;
+}
+
+form.modelform table tr td{
+	vertical-align: middle;
 }
 
 h1{
@@ -76,7 +127,7 @@ div#page{
 .top_nav li{
 	display: inline;
 	list-style-type: none;
-	padding:5px 20px;
+	padding:2px 20px;
 	color:#AABCE4;
 	font-size:16px;
 	line-height: 30px;

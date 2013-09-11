@@ -7,19 +7,17 @@
 {% endblock %}
 
 {% block content %}
-	<div class="main_content">
-		<p>List of your journals:</p>
-		<a href="{% url 'journals:edit' %}">Create new journal</a>
-		<ul>
-			{% for journal in journals %}
-				<li>
-					{{ journal }}
-					<a href="{% url 'journals:edit' journal.id %}">edit</a>
-					<a href="{% url 'journals:delete' journal.id %}">delete</a>
-				</li>
-			{% empty %}
-				<li>No journals.</li>
-			{% endfor %}
-		</ul>
-	</div>
+	<p>List of your journals:</p>
+	<a href="{% url 'journals:edit' %}">Create new journal</a>
+	<ul>
+		{% for journal in journals %}
+			<li>
+				{{ journal }}
+				<a href="{% url 'journals:edit' journal.id %}">edit</a>
+				<a href="{% url 'journals:delete' journal.id %}">delete</a>
+			</li>
+		{% empty %}
+			<li>No journals.</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

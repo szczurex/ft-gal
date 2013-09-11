@@ -6,9 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
 {% endblock %}
 
+{% block header %}
+	{% include 'profiles/header.html' with profile=profile %}
+{% endblock %}
+
 {% block content %}
-	{% block profile_header %}
-		{% include 'profiles/header.html' with profile=profile %}
-	{% endblock %}
 	<p>{{ profile }}</p>
 {% endblock %}
