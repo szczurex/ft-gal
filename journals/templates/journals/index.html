@@ -11,5 +11,15 @@
 {% endblock %}
 
 {% block content %}
-	<p>Index of user journals.</p>
+	{% for journal in journals %}
+		<div class="journal_window">
+			<h1>{{ journal.title }}</h1>
+			<p>{{ journal.date_created }}</p>
+			<p>{{ journal.content|linebreaksbr }}</p>
+			
+			<a href='#'>Read more</a>
+		</div>
+	{% empty %}
+		<p>No journals posted.</p>
+	{% endfor %}
 {% endblock %}

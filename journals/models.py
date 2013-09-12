@@ -9,3 +9,6 @@ class Journal(models.Model):
     date_edited = models.DateTimeField(verbose_name="Date modified", auto_now=True)
     hidden = models.BooleanField(verbose_name='Hidden', default=False)
     deleted = models.BooleanField(verbose_name='Journal deleted?', default=False)
+    
+    def __unicode__(self):
+        return u'%s' % (self.title)

@@ -9,7 +9,9 @@ from django.http import HttpResponseForbidden
 @login_required
 def index(request, username=None, template="journals/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
-    return render(request, template ,{'profile':profile})
+    journals = Journal.objects.filter(profile = profile, deleted=False)
+    return render(request, template ,{'profile':profile,
+                                      'journals':journals})
 
 
 @login_required
