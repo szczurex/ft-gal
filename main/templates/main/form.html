@@ -1,3 +1,6 @@
+<h1>{{ title|default:"Edit:" }}</h1>
+<div class="height-10"></div>
+
 {% if form.is_multipart %}
     <form class="modelform" enctype="multipart/form-data" method="post" action="">
 {% else %}

@@ -10,6 +10,10 @@ body{
 }
 .fleft{float:left;}
 .fright{float:right;}
+div.clear{clear:both;}
+.height-10{height: 10px;}
+.height-20{height: 20px;}
+.height-30{height: 30px;}
 
 a, a:visited, a:hover{
 	color:white;
@@ -158,6 +162,7 @@ div#page{
 	color: #AABCE4;
 	background: #191A1E;
 	min-height: 400px;
-	width:960px;
+	width:920px;
 	margin: 0 auto;
+	padding:20px;
 }
