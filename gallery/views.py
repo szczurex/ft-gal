@@ -6,3 +6,6 @@ from profiles.models import Profile
 def index(request, username, template="gallery/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
     return render(request, template ,{'profile':profile})
+
+
+def submit(request, template="gallery/submit.html"):
