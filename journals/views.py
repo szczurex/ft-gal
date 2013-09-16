@@ -6,12 +6,25 @@ from journals.forms import JournalForm
 from django.http import HttpResponseForbidden
 
 
-@login_required
 def index(request, username=None, template="journals/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
-    journals = Journal.objects.filter(profile = profile, deleted=False)
+    journals = Journal.objects.filter(profile = profile,
+                                      deleted=False, 
+                                      hidden=False)
     return render(request, template ,{'profile':profile,
                                       'journals':journals})
+
+
+def view(request, journal_id, template="journals/view.html"):
+    journal = get_object_or_404(Journal,
+                                id=journal_id,
+                                deleted=False,
+                                hidden=False)
+    profile = journal.profile
+    # TODO: pull comments and process commenting form.
+    
+    return render(request, template ,{'profile':profile,
+                                      'journal':journal})
 
 
 @login_required

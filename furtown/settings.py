@@ -167,3 +167,4 @@ LOGGING = {
 
 # custom settings for this project
 AUTH_USER_MODEL = 'profiles.Profile'
+LOGIN_URL = '/profiles/login'

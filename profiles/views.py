@@ -13,7 +13,6 @@ def index(request):
     return redirect('profiles:userpage', request.user.username)
 
 
-@login_required
 def userpage(request, username, template="profiles/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
     return render(request, template ,{'profile':profile})

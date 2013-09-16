@@ -12,14 +12,10 @@
 {% endblock %}
 
 {% block content %}
-	{% for journal in journals %}
-		<div class="journal_window">
-			<h1>{{ journal.title }}</h1>
-			<p>{{ journal.content|linebreaksbr }}</p>
-			
-			<p class="date">Posted on: {{ journal.date_created }} <a href="{% url 'journals:view' journal.id %}">Read more</a></p>
-		</div>
-	{% empty %}
-		<p>No journals posted.</p>
-	{% endfor %}
+	<div class="journal_window">
+		<h1>{{ journal.title }}</h1>
+		<p>{{ journal.content|linebreaksbr }}</p>
+		
+		<p class="date">Posted on: {{ journal.date_created }}</p>
+	</div>
 {% endblock %}

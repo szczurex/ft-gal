@@ -7,5 +7,7 @@ urlpatterns = patterns('',
     url(r'^edit/$', 'journals.views.edit', name="edit"),
     url(r'^edit/(?P<id>[\d]+)/$', 'journals.views.edit', name="edit"),
     url(r'^delete/(?P<id>[\d]+)/$', 'journals.views.delete', name="delete"),
+    url(r'^(?P<journal_id>[0-9]+)/$', 'journals.views.view', name="view"),
     url(r'^(?P<username>[0-9a-zA-Z\-]+)/$', 'journals.views.index', name="index"),
+    
 )
