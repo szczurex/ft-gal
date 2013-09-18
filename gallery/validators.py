@@ -12,6 +12,46 @@ from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import filesizeformat
 
 
+# Thumbs = 512 kB
+# Files = 2048 kB
+
+# audio, images, flash - docs/rtf/odt maybe soonish.
+FILE_ALLOWED_MIMES = (
+    'audio/mpeg',
+    'image/gif',
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png',
+    'image/bmp',
+    'image/x-bmp',
+    'application/x-shockwave-flash',
+)
+FILE_ALLOWED_EXTENSIONS = (
+    'mp3',
+    'gif',
+    'jpg',
+    'png',
+    'bmp',
+    'swf',
+)
+THUMB_ALLOWED_MIMES = (
+    'image/gif',
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png',
+    'image/bmp',
+    'image/x-bmp',
+)
+THUMB_ALLOWED_EXTENSIONS = (
+    'gif',
+    'jpg',
+    'png',
+    'bmp',
+)
+
+
+
+
 class FileValidator(object):
     """
     Validator for files, checking the size, extension and mimetype.
@@ -86,3 +126,13 @@ class FileValidator(object):
             }
 
             raise ValidationError(message)
+        
+        
+# TODO: pull sizes/extensions from settings
+
+THUMB_VALIDATOR = FileValidator(max_size=512*1024,
+                                allowed_extensions=THUMB_ALLOWED_EXTENSIONS,
+                                allowd_mimetypes=THUMB_ALLOWED_MIMES)
+FILE_VALIDATOR = FileValidator(max_size=2*1024*1024,
+                               allowed_extensions=FILE_ALLOWED_EXTENSIONS,
+                               allowd_mimetypes=FILE_ALLOWED_MIMES)

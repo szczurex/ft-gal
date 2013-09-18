@@ -11,12 +11,5 @@
 {% endblock %}
 
 {% block content %}
-	{% for submission in submissions %}
-		<a href="{% url 'gallery:view' profile.username submission.id %}">
-			<img src="{{ submission.file.url }}" width="200px" height="auto"/>
-			{{ submission.title }}
-		</a>
-	{% empty %}
-		<p>No submissions.</p>
-	{% endfor %}
+	<img src="{{ submission.file.url }}" width="200px" height="auto"/>
 {% endblock %}

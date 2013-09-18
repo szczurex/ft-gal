@@ -2,53 +2,8 @@ from django.db import models
 from profiles.models import Profile
 
 # TODO: file verification
-from gallery.validators import FileValidator
+from gallery.validators import THUMB_VALIDATOR, FILE_VALIDATOR
 
-# Thumbs = 512 kB
-# Files = 2048 kB
-
-# audio, images, flash - docs/rtf/odt maybe soonish.
-FILE_ALLOWED_MIMES = (
-    'audio/mpeg',
-    'image/gif',
-    'image/jpeg',
-    'image/pjpeg',
-    'image/png',
-    'image/bmp',
-    'image/x-bmp',
-    'application/x-shockwave-flash',
-)
-FILE_ALLOWED_EXTENSIONS = (
-    'mp3',
-    'gif',
-    'jpg',
-    'png',
-    'bmp',
-    'swf',
-)
-THUMB_ALLOWED_MIMES = (
-    'image/gif',
-    'image/jpeg',
-    'image/pjpeg',
-    'image/png',
-    'image/bmp',
-    'image/x-bmp',
-)
-THUMB_ALLOWED_EXTENSIONS = (
-    'gif',
-    'jpg',
-    'png',
-    'bmp',
-)
-
-# TODO: pull sizes from settings
-
-THUMB_VALIDATOR = FileValidator(max_size=512*1024,
-                                allowed_extensions=THUMB_ALLOWED_EXTENSIONS,
-                                allowd_mimetypes=THUMB_ALLOWED_MIMES )
-FILE_VALIDATOR = FileValidator(max_size=2*1024*1024,
-                               allowed_extensions=FILE_ALLOWED_EXTENSIONS,
-                               allowd_mimetypes=FILE_ALLOWED_MIMES )
 
 
 RATING_GENERAL  = 1
@@ -82,12 +37,16 @@ class Submission(models.Model):
     rating = models.SmallIntegerField(verbose_name="Rating", choices=RATING)
     # file
     file = models.FileField(verbose_name="File uploaded", max_length=200, upload_to="submissions")
-    thumb = models.ImageField(verbose_name="Custom thumbnail", max_length=200, upload_to="submissions_thumbs")
+    thumb = models.ImageField(verbose_name="Custom thumbnail", max_length=200, upload_to="submissions_thumbs",
+                              null=True, blank=True)
     file_type = models.SmallIntegerField(verbose_name="Submission type", choices=FILE_TYPES)
+    scrap = models.BooleanField(verbose_name='Scrap', default=False)
     # internals
+    file_mime = models.CharField(verbose_name="Mimetype", max_length=5000,
+                                 null=True, blank=True)
     date_created = models.DateTimeField(verbose_name="Date created", auto_now_add=True)
     date_edited = models.DateTimeField(verbose_name="Date modified", auto_now=True)
     hidden = models.BooleanField(verbose_name='Hidden', default=False)
     deleted = models.BooleanField(verbose_name='Submission deleted?', default=False)
     
-    
+    # TODO: pageviews, ratings, faving

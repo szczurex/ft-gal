@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+
+{% block css_scripts %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+	{% include "main/form.html" with form=form title="Submit/Edit entry" %}
+{% endblock %}
