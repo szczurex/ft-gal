@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
 from gallery.forms import SubmissionForm
 from gallery.models import Submission
-
+from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
 
 def index(request, username, template="gallery/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
@@ -23,7 +23,10 @@ def view(request, username, submission_id, template="gallery/view.html"):
                                    deleted=False,
                                    hidden=False)
     return render(request, template ,{'profile':profile,
-                                      'submission':submission})
+                                      'submission':submission,
+                                      'MIMES_AUDIO':MIMES_AUDIO,
+                                      'MIMES_IMAGE':MIMES_IMAGE,
+                                      'MIMES_FLASH':MIMES_FLASH})
 
 # TODO: edition
 @login_required
@@ -41,8 +44,6 @@ def submit(request, template="gallery/submit.html"):
             return redirect('gallery:view',
                             username=profile.username,
                             submission_id=submission.id)
-            #redirect to your submission
-            
         
     return render(request, template ,{'form':form,
                                       'profile':profile})

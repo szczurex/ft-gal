@@ -1,0 +1,25 @@
+.submission_info{
+	padding-top:20px;
+	border-top: 2px solid #595C61;
+}
+
+.submission_info .description{
+	width:500px;
+	float:left;
+}
+
+.submission_info .details{
+	width:300px;
+	float:left;
+	border-left: 2px solid #595C61;
+	padding-left:20px;
+}
+
+.submission_info .details .highlight {
+    color: #A1A2A4;
+}
+
+.submission_item{
+	margin:0 auto;
+	text-align: center;
+}

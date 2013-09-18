@@ -4,6 +4,7 @@
 {% block css_scripts %}
 	{{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'gallery/style.css' %}" />
 {% endblock %}
 
 {% block header %}
@@ -11,5 +12,34 @@
 {% endblock %}
 
 {% block content %}
-	<img src="{{ submission.file.url }}" width="200px" height="auto"/>
+
+	<h1>{{ submission.title }}</h1>
+	<p>by: <a href="{% url 'profiles:userpage' profile.username %}">{{ profile.username }}</a></p>
+	<div class="clear height-10"></div>
+	
+	<div class="submission_item">
+		{% if submission.file_mime in MIMES_AUDIO %}
+			<p>Audio player not yet implemented.</p>
+		{% elif submission.file_mime in MIMES_IMAGE %}
+			<img src="{{ submission.file.url }}" width="600px" height="auto"/>
+		{% elif submission.file_mime in MIMES_FLASH %}
+			<p>Flash player not yet implemented.</p>
+		{% else %}
+			<p>Cannot render file (unknown type).</p>
+		{% endif %}
+	</div>
+	
+	<div class="clear height-10"></div>
+	<div class="submission_info">
+		<div class="description">
+			<p>{{ submission.description }}</p>
+		</div>
+		<div class="details">
+			<ul>
+				<li>Rating: <span class="highlight">{{ submission.get_rating_display }}</span></li>
+			</ul>
+		</div>
+	</div>
+	
+	
 {% endblock %}

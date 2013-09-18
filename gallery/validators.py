@@ -16,24 +16,25 @@ from django.template.defaultfilters import filesizeformat
 # Files = 2048 kB
 
 # audio, images, flash - docs/rtf/odt maybe soonish.
-FILE_ALLOWED_MIMES = (
-    'audio/mpeg',
-    'image/gif',
-    'image/jpeg',
-    'image/pjpeg',
-    'image/png',
-    'image/bmp',
-    'image/x-bmp',
-    'application/x-shockwave-flash',
-)
-FILE_ALLOWED_EXTENSIONS = (
-    'mp3',
-    'gif',
-    'jpg',
-    'png',
-    'bmp',
-    'swf',
-)
+
+MIMES_AUDIO = ('audio/mpeg',)
+EXTNS_AUDIO = ('mp3',)
+MIMES_IMAGE = ('image/gif',
+               'image/jpeg',
+               'image/pjpeg',
+               'image/png',
+               'image/bmp',
+               'image/x-bmp',)
+EXTNS_IMAGE = ('gif',
+               'jpg',
+               'png',
+               'bmp',)
+MIMES_FLASH = ('application/x-shockwave-flash',)
+EXTNS_FLASH = ('swf',)
+
+FILE_ALLOWED_MIMES      = MIMES_AUDIO + MIMES_IMAGE + MIMES_FLASH
+FILE_ALLOWED_EXTENSIONS = EXTNS_AUDIO + EXTNS_IMAGE + EXTNS_FLASH
+
 THUMB_ALLOWED_MIMES = (
     'image/gif',
     'image/jpeg',
