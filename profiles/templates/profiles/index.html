@@ -16,12 +16,25 @@
 			{% if last_submissions %}
 				<div id="last_submission" class="light_back">
 					<h2>Latest submission</h2>
-					<img src="{{ last_submissions.0.file.url }}" width="300px" height="auto" />
+					<a href="{% url 'gallery:view' last_submissions.0.profile.username last_submissions.0.id %}">
+						<img src="{{ last_submissions.0.file.url }}" width="300px" height="auto" />
+					</a>
+					<br>
+					<a class="title" href="{% url 'gallery:view' last_submissions.0.profile.username last_submissions.0.id %}">{{ last_submissions.0.title }}</a>
 				</div>
 				<div id="gallery" class="light_back">
 					<h2>Gallery</h2>
 					{% for submission in last_submissions %}
-						<img src="{{ submission.file.url }}" width="150px" height="auto" />
+						<div class="submission_item">
+							<div class="img">
+								<a href="{% url 'gallery:view' submission.profile.username submission.id %}">
+									<img src="{{ submission.file.url }}" width="150px" height="auto" />
+								</a>
+							</div>
+							<div class="meta">
+								<a class="title" href="{% url 'gallery:view' submission.profile.username submission.id %}">{{ submission.title }}</a>
+							</div>
+						</div>
 					{% endfor %}
 				</div>
 			{% endif %}
