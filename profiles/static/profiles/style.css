@@ -71,8 +71,9 @@
 	float:right;
 	width:450px;
 }
-.profile_conent #last_submission{
+.profile_conent #last_submission, .profile_conent #gallery{
 	text-align: center;
+	margin-bottom:10px;
 }
 .profile_conent #last_journal h2{
 	text-align: center;

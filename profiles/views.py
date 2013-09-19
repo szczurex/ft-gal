@@ -23,13 +23,13 @@ def userpage(request, username, template="profiles/index.html"):
         last_journal = None
     
     try:    
-        last_submission = Submission.objects.filter(profile=profile, hidden=False, deleted=False)[0]
+        last_submissions = Submission.objects.filter(profile=profile, hidden=False, deleted=False)[0:5]
     except Submission.DoesNotExist:
-        last_submission = None
+        last_submissions = None
         
     return render(request, template ,{'profile':profile,
                                       'last_journal':last_journal,
-                                      'last_submission':last_submission})
+                                      'last_submissions':last_submissions})
 
 
 def register(request, template="registration/register.html"):

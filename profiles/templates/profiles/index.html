@@ -13,10 +13,16 @@
 {% block content %}
 	<div class="profile_conent">
 		<div class="left">
-			{% if last_submission %}
+			{% if last_submissions %}
 				<div id="last_submission" class="light_back">
 					<h2>Latest submission</h2>
-					<img src="{{ last_submission.file.url }}" width="200px" height="auto" />
+					<img src="{{ last_submissions.0.file.url }}" width="300px" height="auto" />
+				</div>
+				<div id="gallery" class="light_back">
+					<h2>Gallery</h2>
+					{% for submission in last_submissions %}
+						<img src="{{ submission.file.url }}" width="150px" height="auto" />
+					{% endfor %}
 				</div>
 			{% endif %}
 		</div>
