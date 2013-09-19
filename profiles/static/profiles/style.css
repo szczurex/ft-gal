@@ -56,3 +56,30 @@
 	font-size:18px;
 }
 .profile_header .stats ul li a:hover{color: #C87F22;}
+
+
+/* Profile Content */
+
+.profile_conent{
+	overflow:hidden;
+}
+.profile_conent .left{
+	float:left;
+	width:450px;
+}
+.profile_conent .right{
+	float:right;
+	width:450px;
+}
+.profile_conent #last_submission{
+	text-align: center;
+}
+.profile_conent #last_journal h2{
+	text-align: center;
+}
+
+.profile_conent .foot{
+	padding-top: 5px;
+	border-top: 1px solid #595C61;
+	margin-top: 5px;
+}

@@ -11,5 +11,23 @@
 {% endblock %}
 
 {% block content %}
-	<p>{{ profile }}</p>
+	<div class="profile_conent">
+		<div class="left">
+			{% if last_submission %}
+				<div id="last_submission" class="light_back">
+					<h2>Latest submission</h2>
+					<img src="{{ last_submission.file.url }}" width="200px" height="auto" />
+				</div>
+			{% endif %}
+		</div>
+		<div class="right">
+			{% if last_journal %}
+				<div id="last_journal" class="light_back">
+					<h2>{{ last_journal.title }}</h2>
+					<p>{{ last_journal.content|linebreaksbr }}</p>
+					<p class="foot">Posted on: {{ last_journal.date_created }} <a href="{% url 'journals:view' last_journal.id %}">Read more</a></p>
+				</div>
+			{% endif %}
+		</div>
+	</div>
 {% endblock %}

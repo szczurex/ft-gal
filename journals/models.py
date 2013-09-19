@@ -12,3 +12,6 @@ class Journal(models.Model):
     
     def __unicode__(self):
         return u'%s' % (self.title)
+    
+    class Meta:
+        ordering = ['-date_created']

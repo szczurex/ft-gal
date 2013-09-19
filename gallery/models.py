@@ -50,3 +50,6 @@ class Submission(models.Model):
     deleted = models.BooleanField(verbose_name='Submission deleted?', default=False)
     
     # TODO: pageviews, ratings, faving
+    
+    class Meta:
+        ordering = ['-date_created']

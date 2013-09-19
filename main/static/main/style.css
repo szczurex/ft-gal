@@ -94,6 +94,22 @@ h1{
 	text-transform:capitalize;
 }
 
+h2{
+	color: #858B97;
+	font-weight: bold;
+	font-size: 16px;
+	text-transform:capitalize;
+	padding-bottom:5px;
+	border-bottom: 1px solid #595C61;
+	margin-bottom:5px;
+}
+
+.light_back{
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	padding:3px;
+}
+
 div.page_header{
 	background-color: rgba(0, 0, 0, 0.5);
 	height:30px;

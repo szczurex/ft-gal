@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.template.context import RequestContext
 from profiles.forms import RegisterForm
 from profiles.models import Profile, ActivationCode
+from journals.models import Journal
+from gallery.models import Submission
 from datetime import datetime
 from django.utils import timezone
 from messages.views import queue_message
@@ -15,7 +17,19 @@ def index(request):
 
 def userpage(request, username, template="profiles/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
-    return render(request, template ,{'profile':profile})
+    try:
+        last_journal = Journal.objects.filter(profile=profile, hidden=False, deleted=False)[0]
+    except Journal.DoesNotExist:
+        last_journal = None
+    
+    try:    
+        last_submission = Submission.objects.filter(profile=profile, hidden=False, deleted=False)[0]
+    except Submission.DoesNotExist:
+        last_submission = None
+        
+    return render(request, template ,{'profile':profile,
+                                      'last_journal':last_journal,
+                                      'last_submission':last_submission})
 
 
 def register(request, template="registration/register.html"):
