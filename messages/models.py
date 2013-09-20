@@ -7,3 +7,6 @@ class TaskedMail(models.Model):
     message         = models.CharField(verbose_name='Mail content', max_length=2000)
     success         = models.BooleanField(verbose_name='Mail sent status', default=False)
     date_created    = models.DateTimeField(verbose_name='Mail creation date', auto_now_add=True)
+    
+    
+#class Notification

@@ -1,7 +1,8 @@
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
-from profiles.models import Profile
+from profiles.models import Profile, ProfileWatch
+
 
     
 class RegisterForm(forms.ModelForm):
@@ -79,3 +80,10 @@ class RegisterForm(forms.ModelForm):
         if commit:
             profile.save()
         return profile
+
+
+class WatchForm(forms.ModelForm):
+    class Meta:
+        model = ProfileWatch
+        exclude = ('profile','target')
+

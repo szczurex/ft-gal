@@ -7,7 +7,7 @@
 			<p>Full name: TODO</p>
 			<p>Registered since: {{ profile.date_joined }}</p>
 			<br>
-			<a href="#" class="button blue">WATCH</a>
+			<a href="{% url 'profiles:watch' profile.username %}" class="button blue">WATCH</a>
 			<a href="#" class="button gray">SEND NOTE</a>
 		</div>
 	</div>

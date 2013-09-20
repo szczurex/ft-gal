@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.template.context import RequestContext
-from profiles.forms import RegisterForm
-from profiles.models import Profile, ActivationCode
+from profiles.forms import RegisterForm, WatchForm
+from profiles.models import Profile, ActivationCode, ProfileWatch
 from journals.models import Journal
 from gallery.models import Submission
 from datetime import datetime
 from django.utils import timezone
 from messages.views import queue_message
-from django.contrib.auth.decorators import login_required
+
 
 @login_required
 def index(request):
@@ -17,20 +18,46 @@ def index(request):
 
 def userpage(request, username, template="profiles/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)
-    try:
-        last_journal = Journal.objects.filter(profile=profile, hidden=False, deleted=False)[0]
-    except Journal.DoesNotExist:
-        last_journal = None
     
-    try:    
-        last_submissions = Submission.objects.filter(profile=profile, hidden=False, deleted=False)[0:5]
-    except Submission.DoesNotExist:
-        last_submissions = None
+    last_journal = Journal.objects.filter(profile=profile, hidden=False, deleted=False)[:1]
+    if last_journal:
+        last_journal = last_journal[0]
+    last_submissions = Submission.objects.filter(profile=profile, hidden=False, deleted=False)[:5]
         
     return render(request, template ,{'profile':profile,
                                       'last_journal':last_journal,
                                       'last_submissions':last_submissions})
 
+
+@login_required
+def watch(request, username, template="profiles/watch.html"):
+    target = get_object_or_404(Profile, username__iexact=username)
+    profile = request.user
+    
+    if target == profile:
+        # I understand that some people like to view themselves in the mirror, but...
+        # Seriously, stop watching yourself.
+        return redirect('profiles:userpage', profile.username)
+    
+    instance = None
+    watch_inst = ProfileWatch.objects.filter(profile=profile,
+                                             target=target)
+    if watch_inst:
+        instance = watch_inst[0]
+    
+    form = WatchForm(instance=instance)
+    if request.POST:
+        form = WatchForm(request.POST, instance=instance)
+        watch = form.save(commit=False)
+        watch.profile = profile
+        watch.target = target
+        watch.save()
+        
+        # TODO: leave a message "success"
+        return redirect('profiles:userpage', target.username)
+    
+    return render(request, template ,{'profile':target,
+                                      'form':form})
 
 def register(request, template="registration/register.html"):
     form = RegisterForm()

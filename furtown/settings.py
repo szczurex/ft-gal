@@ -2,7 +2,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+INTERNAL_IPS = ('127.0.0.1',)
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -100,6 +100,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # debug toolbar. Not to use in production.
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'furtown.urls'
@@ -132,6 +134,9 @@ INSTALLED_APPS = (
     'gallery',
     'journals',
     'messages',
+    
+    #debug
+    'debug_toolbar',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -163,7 +168,9 @@ LOGGING = {
     }
 }
 
-
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
 
 # custom settings for this project
 AUTH_USER_MODEL = 'profiles.Profile'

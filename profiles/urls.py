@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name':'registration/logout.html'}, name="logout"),
     
     url(r'^view/(?P<username>[0-9a-zA-Z\-]+)/$', 'profiles.views.userpage', name="userpage"),
+    url(r'^watch/(?P<username>[0-9a-zA-Z\-]+)/$', 'profiles.views.watch', name="watch"),
     url(r'^$', 'profiles.views.index', name="index"),
 )
