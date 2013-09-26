@@ -36,9 +36,10 @@ class ProfileWatch(models.Model):
     scraps  = models.BooleanField(verbose_name="Scraps", default=True)
     
     date_created = models.DateTimeField(verbose_name="Date created", auto_now_add=True)
-    
-    class Meta:
-        unique_together = ("profile", "target")
+
+# NO - THIS IS WRONG.    
+#     class Meta:
+#         unique_together = ("profile", "target")
         
 
 """

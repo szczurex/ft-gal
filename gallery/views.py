@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
 from gallery.forms import SubmissionForm
 from gallery.models import Submission
 from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
+
 
 def index(request, username, template="gallery/index.html"):
     profile = get_object_or_404(Profile, username__iexact=username)

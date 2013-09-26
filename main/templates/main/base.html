@@ -11,8 +11,8 @@
 	<body>
 		<div class="page_header">
 			<div class="header_container">
-				<a>Message center placeholder ▼</a>
 				{% if user.is_authenticated %}
+					<a href="{% url 'messages:index' %}">Message center placeholder ▼</a>
 					<p class="fright">
 						Welcome, {{ user.username }}. <a href="{% url 'profiles:logout' %}">logout</a>
 					</p>
@@ -30,7 +30,7 @@
 			<div class="top_nav">
 				<ul>
 					<li class="first">
-						<a href="#">SUBMIT</a>
+						<a href="{% url 'gallery:submit' %}">SUBMIT</a>
 					</li>
 					<li>
 						<a href="#">BROWSE</a>

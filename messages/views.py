@@ -2,10 +2,14 @@
 from django.template.loader import render_to_string
 from messages.models import TaskedMail
 from django.contrib.sites.models import get_current_site
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 
+from django.contrib.contenttypes.models import ContentType
+from messages.models import Notification
+from profiles.models import ProfileWatch
+from journals.models import Journal
+from gallery.models import Submission
 """
     Need to think this whole thing through,
     either pass destination mail as a parameter
@@ -49,7 +53,22 @@ def queue_message(request, msg_code, object, email):
     
     return False
 
+
 @login_required
 def index(request, template="messages/index.html"):
     profile = request.user
-    return render(request, template ,{'profile':profile})
+    
+    ct_watch = ContentType.objects.get_for_model(ProfileWatch)
+    ct_submission = ContentType.objects.get_for_model(Submission)
+    ct_journal = ContentType.objects.get_for_model(Journal)
+    
+    
+    nf_watches = Notification.objects.filter(content_type=ct_watch, profile=profile)
+    nf_submissions = Notification.objects.filter(content_type=ct_submission, profile=profile)
+    nf_journals = Notification.objects.filter(content_type=ct_journal, profile=profile)
+    
+    return render(request, template ,{'profile':profile,
+                                      'nf_watches':nf_watches,
+                                      'nf_submissions':nf_submissions,
+                                      'nf_journals':nf_journals})
+

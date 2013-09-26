@@ -53,3 +53,4 @@ class Submission(models.Model):
     
     class Meta:
         ordering = ['-date_created']
+        

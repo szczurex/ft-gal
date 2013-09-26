@@ -4,8 +4,58 @@
 {% block css_scripts %}
 	{{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'messages/style.css' %}" />
 {% endblock %}
 
 {% block content %}
-	<p>Index of user message center.</p>
+	<h1>Messages:</h1>
+	<div class="height-10"></div>
+	
+	<h2>Submissions</h2>
+	<ul id="messages_submissions">
+	{% for submission in nf_submissions %}
+		<li>
+			<div class="submission_item">
+				<div class="img">
+					<a href="{% url 'gallery:view' submission.content_object.profile.username submission.content_object.id %}">
+						<img src="{{ submission.content_object.file.url }}" width="100px" height="auto" />
+					</a>
+				</div>
+				<div class="meta">
+					<a class="title" href="{% url 'gallery:view' submission.content_object.profile.username submission.content_object.id %}">{{ submission.content_object.title }}</a>
+				</div>
+			</div>
+		</li>
+	{% empty %}
+		<p>No new submissions.</p>
+	{% endfor %}
+	</ul>
+	
+	<div class="height-20"></div>
+	
+	<h2>Watches</h2>
+	<ul>
+	{% for watch in nf_watches %}
+		<li>
+			({{ watch.date_created }}) <a href="{% url 'profiles:userpage' watch.author.username %}">{{ watch.author }}</a> is now watching you.
+		</li> 
+	{% empty %}
+		<p>No new watches.</p>
+	{% endfor %}
+	</ul>
+	
+	<div class="height-20"></div>
+	
+	<h2>Journals</h2>
+	<ul>
+	{% for journal in nf_journals %}
+		<li>
+			({{ journal.date_created }}) <a href="{% url 'journals:view' journal.content_object.id %}">{{ journal.content_object.title }}</a> by <a href="{% url 'profiles:userpage' journal.author.username %}">{{ journal.author }}</a>
+		</li>
+	{% empty %}
+		<p>No new journals.</p>
+	{% endfor %}
+	</ul>
+	
+	
 {% endblock %}

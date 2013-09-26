@@ -135,8 +135,12 @@ INSTALLED_APPS = (
     'journals',
     'messages',
     
+    #external
+    'sorl.thumbnail',
+    
     #debug
     'debug_toolbar',
+    
 )
 
 # A sample logging configuration. The only tangible logging

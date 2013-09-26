@@ -26,3 +26,6 @@
 -blocklist
 -customization
 -profile comments
+
+#LAYOUT
+-unify the CSS styles, it's getting messy
