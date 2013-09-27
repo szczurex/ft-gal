@@ -10,6 +10,16 @@ class Profile(AbstractUser):
     avatar = models.ImageField(verbose_name="Avatar", upload_to='avatars')
    # last_ip = TODO
    
+    def get_submissions_count(self):
+        return len(self.submission_set.filter(hidden=False,
+                                              deleted=False))
+    def get_journals_count(self):
+        return len(self.journal_set.filter(hidden=False,
+                                           deleted=False))
+        
+    def get_messages_count(self):
+        return len(self.notif_profile.all())
+   
    
 class ActivationCode(models.Model):
     profile         = models.ForeignKey(Profile)

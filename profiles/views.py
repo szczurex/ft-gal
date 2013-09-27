@@ -9,7 +9,7 @@ from gallery.models import Submission
 from datetime import datetime
 from django.utils import timezone
 from messages.views import queue_message
-
+from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
 
 @login_required
 def index(request):
@@ -26,7 +26,10 @@ def userpage(request, username, template="profiles/index.html"):
         
     return render(request, template ,{'profile':profile,
                                       'last_journal':last_journal,
-                                      'last_submissions':last_submissions})
+                                      'last_submissions':last_submissions,
+                                      'MIMES_AUDIO':MIMES_AUDIO,
+                                      'MIMES_IMAGE':MIMES_IMAGE,
+                                      'MIMES_FLASH':MIMES_FLASH})
 
 
 @login_required

@@ -10,6 +10,7 @@ from messages.models import Notification
 from profiles.models import ProfileWatch
 from journals.models import Journal
 from gallery.models import Submission
+from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
 """
     Need to think this whole thing through,
     either pass destination mail as a parameter
@@ -70,5 +71,8 @@ def index(request, template="messages/index.html"):
     return render(request, template ,{'profile':profile,
                                       'nf_watches':nf_watches,
                                       'nf_submissions':nf_submissions,
-                                      'nf_journals':nf_journals})
+                                      'nf_journals':nf_journals,
+                                      'MIMES_AUDIO':MIMES_AUDIO,
+                                      'MIMES_IMAGE':MIMES_IMAGE,
+                                      'MIMES_FLASH':MIMES_FLASH})
 

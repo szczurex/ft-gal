@@ -7,7 +7,14 @@ body{
 	font-family: 'Titillium Web', sans-serif;
 	font-size: 14px;
 	background: url('bg.png') repeat;
+	height:100%;
 }
+
+#page_container{
+	min-height:100%;
+    position:relative;
+}
+
 .fleft{float:left;}
 .fright{float:right;}
 div.clear{clear:both;}
@@ -133,6 +140,7 @@ div#page_logo{
 div#page{
 	margin: 0 auto;
 	width:960px;
+	padding-bottom:40px;
 }
 
 .top_nav{
@@ -188,6 +196,9 @@ div#page{
 	background: #2A2E31;
 	height: 30px;
 	color:white;
+	bottom:0;
+	position:absolute;
+	width:100%;
 }
 
 #page_footer .footer_container{

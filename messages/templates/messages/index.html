@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
+{% load thumbnail %}
 
 {% block css_scripts %}
 	{{ block.super }}
@@ -14,18 +15,11 @@
 	<h2>Submissions</h2>
 	<ul id="messages_submissions">
 	{% for submission in nf_submissions %}
+	{% with submission.content_object as sub_obj %}
 		<li>
-			<div class="submission_item">
-				<div class="img">
-					<a href="{% url 'gallery:view' submission.content_object.profile.username submission.content_object.id %}">
-						<img src="{{ submission.content_object.file.url }}" width="100px" height="auto" />
-					</a>
-				</div>
-				<div class="meta">
-					<a class="title" href="{% url 'gallery:view' submission.content_object.profile.username submission.content_object.id %}">{{ submission.content_object.title }}</a>
-				</div>
-			</div>
+			{% include 'gallery/sub_icon.html' with sub_obj=sub_obj MIMES_AUDIO=MIMES_AUDIO MIMES_IMAGE=MIMES_IMAGE MIMES_FLASH=MIMES_FLASH %}
 		</li>
+	{% endwith %}
 	{% empty %}
 		<p>No new submissions.</p>
 	{% endfor %}

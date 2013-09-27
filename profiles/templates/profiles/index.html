@@ -4,6 +4,7 @@
 {% block css_scripts %}
 	{{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'messages/style.css' %}" />
 {% endblock %}
 
 {% block header %}
@@ -24,18 +25,13 @@
 				</div>
 				<div id="gallery" class="light_back">
 					<h2>Gallery</h2>
+					<ul id="messages_submissions">
 					{% for submission in last_submissions %}
-						<div class="submission_item">
-							<div class="img">
-								<a href="{% url 'gallery:view' submission.profile.username submission.id %}">
-									<img src="{{ submission.file.url }}" width="150px" height="auto" />
-								</a>
-							</div>
-							<div class="meta">
-								<a class="title" href="{% url 'gallery:view' submission.profile.username submission.id %}">{{ submission.title }}</a>
-							</div>
-						</div>
+						<li>
+							{% include 'gallery/sub_icon.html' with sub_obj=submission MIMES_AUDIO=MIMES_AUDIO MIMES_IMAGE=MIMES_IMAGE MIMES_FLASH=MIMES_FLASH %}
+						</li>
 					{% endfor %}
+					</ul>
 				</div>
 			{% endif %}
 		</div>

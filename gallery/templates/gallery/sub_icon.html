@@ -1,0 +1,25 @@
+{% load thumbnail %}
+<div class="submission_item">
+	<div class="img">
+		<a href="{% url 'gallery:view' sub_obj.profile.username sub_obj.id %}">
+			{% if sub_obj.file_mime in MIMES_AUDIO %}
+				<span>Audio_file</span>
+			{% elif sub_obj.file_mime in MIMES_IMAGE %}
+				{% if sub_obj.file_width > 100 %}
+					{% thumbnail sub_obj.file "100x100" as im %}
+						<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/>
+					{% endthumbnail %}
+				{% else %}
+					<img src="{{ sub_obj.file.url }}"/>
+				{% endif %}
+			{% elif sub_obj.file_mime in MIMES_FLASH %}
+				<span>Flash_file</span>
+			{% else %}
+				<span>File_error</span>
+			{% endif %}
+		</a>
+	</div>
+	<div class="meta">
+		<a class="title" href="{% url 'gallery:view' sub_obj.profile.username sub_obj.id %}">{{ sub_obj.title }}</a>
+	</div>
+</div>

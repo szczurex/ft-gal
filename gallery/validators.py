@@ -27,6 +27,7 @@ MIMES_IMAGE = ('image/gif',
                'image/x-bmp',)
 EXTNS_IMAGE = ('gif',
                'jpg',
+               'jpeg',
                'png',
                'bmp',)
 MIMES_FLASH = ('application/x-shockwave-flash',)
@@ -46,6 +47,7 @@ THUMB_ALLOWED_MIMES = (
 THUMB_ALLOWED_EXTENSIONS = (
     'gif',
     'jpg',
+    'jpeg',
     'png',
     'bmp',
 )

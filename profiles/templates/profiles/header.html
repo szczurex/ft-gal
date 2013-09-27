@@ -1,9 +1,11 @@
 {% load staticfiles %}
 <div class="profile_header">
 	<div class="info">
-		<img src="{% static 'profiles/av_placeholder.png' %}" width="100px" height="100px"/>
+		<a href="{% url 'profiles:userpage' profile.username %}">
+			<img src="{% static 'profiles/av_placeholder.png' %}" width="100px" height="100px"/>
+		</a>
 		<div class="text">
-			<h1>{{ profile }}</h1>
+			<h1><a href="{% url 'profiles:userpage' profile.username %}">{{ profile }}</a></h1>
 			<p>Full name: TODO</p>
 			<p>Registered since: {{ profile.date_joined }}</p>
 			<br>
@@ -18,8 +20,8 @@
 				<td>Comments given: <span class="highlight">TODO</span></td>
 			</tr>
 			<tr>
-				<td>Submissions: <span class="highlight">TODO</span></td>
-				<td>Journals: <span class="highlight">TODO</span></td>
+				<td>Submissions: <span class="highlight">{{ profile.get_submissions_count }}</span></td>
+				<td>Journals: <span class="highlight">{{ profile.get_journals_count }}</span></td>
 			</tr>
 			<tr>
 				<td>Comments recieved: <span class="highlight">TODO</span></td>

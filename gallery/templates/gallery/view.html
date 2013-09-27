@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load staticfiles %}
+{% load thumbnail %}
 
 {% block css_scripts %}
 	{{ block.super }}
@@ -21,7 +22,15 @@
 		{% if submission.file_mime in MIMES_AUDIO %}
 			<p>Audio player not yet implemented.</p>
 		{% elif submission.file_mime in MIMES_IMAGE %}
-			<img src="{{ submission.file.url }}" width="600px" height="auto"/>
+
+			{% if submission.file_width > 600 %}
+				{% thumbnail submission.file "600" as im %}
+					<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/>
+				{% endthumbnail %}
+			{% else %}
+				<img src="{{ submission.file.url }}"/>
+			{% endif %}
+				
 		{% elif submission.file_mime in MIMES_FLASH %}
 			<p>Flash player not yet implemented.</p>
 		{% else %}

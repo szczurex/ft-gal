@@ -13,7 +13,10 @@ def index(request, username, template="gallery/index.html"):
                                            hidden=False)
     
     return render(request, template ,{'profile':profile,
-                                      'submissions':submissions})
+                                      'submissions':submissions,
+                                      'MIMES_AUDIO':MIMES_AUDIO,
+                                      'MIMES_IMAGE':MIMES_IMAGE,
+                                      'MIMES_FLASH':MIMES_FLASH})
 
 
 def view(request, username, submission_id, template="gallery/view.html"):

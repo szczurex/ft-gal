@@ -9,57 +9,59 @@
 		
 	</head>
 	<body>
-		<div class="page_header">
-			<div class="header_container">
-				{% if user.is_authenticated %}
-					<a href="{% url 'messages:index' %}">Message center placeholder ▼</a>
-					<p class="fright">
-						Welcome, {{ user.username }}. <a href="{% url 'profiles:logout' %}">logout</a>
-					</p>
-				{% else %}
-				    <p class="fright">
-				    	<a href="{% url 'profiles:login' %}">log in</a>|<a href="{% url 'profiles:register' %}">register</a>
-				    </p>
-				{% endif %}
-			</div>
-		</div>
-		<div id="page_logo">
-			
-		</div>
-		<div id="page">
-			<div class="top_nav">
-				<ul>
-					<li class="first">
-						<a href="{% url 'gallery:submit' %}">SUBMIT</a>
-					</li>
-					<li>
-						<a href="#">BROWSE</a>
-					</li>
-					<li>
-						<a href="#">COMMUNITY</a>
-					</li>
-					<li>
-						<a href="#">SUPPORT</a>
-					</li>
-				</ul>
-				<div class="top_search">
-					<form>
-						<input type="text" />
-						<a href="#">SEARCH</a>
-					</form>
+		<div id="page_container">
+			<div class="page_header">
+				<div class="header_container">
+					{% if user.is_authenticated %}
+						<a href="{% url 'messages:index' %}">{{ user.get_messages_count}} messages ▼</a>
+						<p class="fright">
+							Welcome, <a href="{% url 'profiles:userpage' user.username %}">{{ user.username }}</a> <a href="{% url 'profiles:logout' %}">logout</a>
+						</p>
+					{% else %}
+					    <p class="fright">
+					    	<a href="{% url 'profiles:login' %}">log in</a>|<a href="{% url 'profiles:register' %}">register</a>
+					    </p>
+					{% endif %}
 				</div>
 			</div>
-			{% block header %}{% endblock %}
-			<div class="main_content">
-				{% block content %}
+			<div id="page_logo">
 				
-				{% endblock %}
 			</div>
-		</div>
-		<div id="page_footer">
+			<div id="page">
+				<div class="top_nav">
+					<ul>
+						<li class="first">
+							<a href="{% url 'gallery:submit' %}">SUBMIT</a>
+						</li>
+						<li>
+							<a href="#">BROWSE</a>
+						</li>
+						<li>
+							<a href="#">COMMUNITY</a>
+						</li>
+						<li>
+							<a href="#">SUPPORT</a>
+						</li>
+					</ul>
+					<div class="top_search">
+						<form>
+							<input type="text" />
+							<a href="#">SEARCH</a>
+						</form>
+					</div>
+				</div>
+				{% block header %}{% endblock %}
+				<div class="main_content">
+					{% block content %}
+					
+					{% endblock %}
+				</div>
+			</div>
+			<div id="page_footer">
 			<div class="footer_container">
 				Written by vilczus.
 			</div>
 		</div>
+		</div>	
 	</body>
 </html>

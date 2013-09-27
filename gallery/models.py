@@ -2,8 +2,8 @@ from django.db import models
 from profiles.models import Profile
 
 # TODO: file verification
-from gallery.validators import THUMB_VALIDATOR, FILE_VALIDATOR
-
+from gallery.validators import THUMB_VALIDATOR, FILE_VALIDATOR, MIMES_IMAGE
+from PIL import Image
 
 
 RATING_GENERAL  = 1
@@ -53,4 +53,12 @@ class Submission(models.Model):
     
     class Meta:
         ordering = ['-date_created']
+        
+    @property
+    def file_width(self):
+        if self.file_mime in MIMES_IMAGE:
+            im = Image.open(self.file)
+            width, height = im.size
+            return width
+        return None
         
