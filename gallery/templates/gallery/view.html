@@ -50,5 +50,30 @@
 		</div>
 	</div>
 	
+	<div class="clear height-10"></div>
+	<div class="comments">
+		{% if user.is_authenticated %}
+			{% include "main/form.html" with form=form title="Leave a comment..." %}
+		{% else %}
+			<p>Please log in to post comments.</p>
+		{% endif %}
+		
+		{% for comment in comments %}
+			<div class="comment">
+				<div class="header">
+					<a href="{% url 'profiles:userpage' comment.profile.username %}">{{ comment.profile }}</a>
+					<span class="fright">{{ comment.date_created }}</span>
+				</div>
+				<div class="content">
+					{{ comment.content }}
+				</div>
+			</div>
+		{% empty %}
+			<div class="comment">
+				No comments yet.
+			</div>
+		{% endfor %}
+		
+	</div>
 	
 {% endblock %}

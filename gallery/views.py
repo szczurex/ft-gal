@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
-from gallery.forms import SubmissionForm
-from gallery.models import Submission
+from gallery.forms import SubmissionForm, CommentForm
+from gallery.models import Submission, Submission_Comment
 from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
 
 
@@ -26,8 +26,34 @@ def view(request, username, submission_id, template="gallery/view.html"):
                                    profile=profile,
                                    deleted=False,
                                    hidden=False)
+    
+    comments = Submission_Comment.objects.filter(submission=submission,
+                                                 deleted=False)
+    form = None
+    if request.user.is_authenticated():
+        form = CommentForm()
+    
+    if request.POST:
+        if form:
+            #TODO: check if user can post (privacy/blacklist/etc)
+            #TODO: replying to a comment
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.profile = request.user
+                comment.submission = submission
+                #TODO
+                #comment.comment = parent_comment
+                comment.save()
+                #IDEA: redirect with a link to the comment?
+                return redirect('gallery:view',
+                                username=profile.username,
+                                submission_id=submission.id)
+    
     return render(request, template ,{'profile':profile,
                                       'submission':submission,
+                                      'form':form,
+                                      'comments':comments,
                                       'MIMES_AUDIO':MIMES_AUDIO,
                                       'MIMES_IMAGE':MIMES_IMAGE,
                                       'MIMES_FLASH':MIMES_FLASH})

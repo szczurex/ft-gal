@@ -36,7 +36,7 @@ class Notification(models.Model):
 
 from profiles.models import ProfileWatch
 from journals.models import Journal
-from gallery.models import Submission 
+from gallery.models import Submission #, Submission_Comment
 """
     Why post_save? pre_save has no ability to check whether the object is modified or created.
 """

@@ -61,4 +61,20 @@ class Submission(models.Model):
             width, height = im.size
             return width
         return None
-        
+
+
+# consider django-mptt
+class Submission_Comment(models.Model):
+    profile = models.ForeignKey(Profile) #author
+    submission = models.ForeignKey(Submission)
+    comment = models.ForeignKey("gallery.Submission_Comment", null=True, blank=True) #reply to a comment
+    
+    content = models.CharField(verbose_name="", max_length=5000)
+    
+    date_created = models.DateTimeField(verbose_name="Date created", auto_now_add=True)
+    deleted = models.BooleanField(verbose_name='Comment deleted?', default=False)
+    
+    #TODO: banning, blocking, etc
+    
+    class Meta:
+        ordering = ['-date_created']
