@@ -4,6 +4,8 @@
 {% block css_scripts %}
 	{{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'gallery/style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'messages/style.css' %}" />
 {% endblock %}
 
 {% block header %}
@@ -11,5 +13,13 @@
 {% endblock %}
 
 {% block content %}
-	<p>Index of favourites page.</p>
+	<ul id="messages_submissions">
+	{% for favourite in favourites %}
+		<li>
+			{% include 'gallery/sub_icon.html' with sub_obj=favourite.submission MIMES_AUDIO=MIMES_AUDIO MIMES_IMAGE=MIMES_IMAGE MIMES_FLASH=MIMES_FLASH %}
+		</li>
+	{% empty %}
+		<li>No favourites.</li>
+	{% endfor %}
+	</ul>
 {% endblock %}

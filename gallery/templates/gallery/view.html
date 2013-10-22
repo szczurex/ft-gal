@@ -38,6 +38,13 @@
 		{% endif %}
 	</div>
 	
+	{% if user.is_authenticated %}
+	<div class="submission_options">
+		<a href="{% url 'favourites:add' profile.username submission.id %}">+Add to favourites</a>
+		<a href="{{ submission.file.url }}">Download</a>
+	</div>
+	{% endif %}
+	
 	<div class="clear height-10"></div>
 	<div class="submission_info">
 		<div class="description">
