@@ -4,6 +4,7 @@ from profiles.models import Profile
 from gallery.forms import SubmissionForm, CommentForm
 from gallery.models import Submission, Submission_Comment
 from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
+from favourites.models import Favourite
 
 
 def index(request, username, template="gallery/index.html"):
@@ -29,9 +30,17 @@ def view(request, username, submission_id, template="gallery/view.html"):
     
     comments = Submission_Comment.objects.filter(submission=submission,
                                                  deleted=False)
+    
+    
+    
+    
     form = None
+    favourite = None
     if request.user.is_authenticated():
         form = CommentForm()
+        favourite = Favourite.objects.filter(submission=submission, profile=request.user)[:1]
+        if favourite:
+            favourite = favourite[0]
     
     if request.POST:
         if form:
@@ -52,6 +61,7 @@ def view(request, username, submission_id, template="gallery/view.html"):
     
     return render(request, template ,{'profile':profile,
                                       'submission':submission,
+                                      'favourite':favourite,
                                       'form':form,
                                       'comments':comments,
                                       'MIMES_AUDIO':MIMES_AUDIO,

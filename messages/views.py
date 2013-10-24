@@ -3,13 +3,14 @@ from django.template.loader import render_to_string
 from messages.models import TaskedMail
 from django.contrib.sites.models import get_current_site
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.contenttypes.models import ContentType
 from messages.models import Notification
 from profiles.models import ProfileWatch
 from journals.models import Journal
-from gallery.models import Submission
+from gallery.models import Submission, Submission_Comment
+from favourites.models import Favourite
 from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
 """
     Need to think this whole thing through,
@@ -62,16 +63,31 @@ def index(request, template="messages/index.html"):
     ct_watch = ContentType.objects.get_for_model(ProfileWatch)
     ct_submission = ContentType.objects.get_for_model(Submission)
     ct_journal = ContentType.objects.get_for_model(Journal)
+    ct_favourite = ContentType.objects.get_for_model(Favourite)
+    ct_sub_comment = ContentType.objects.get_for_model(Submission_Comment)
     
     
     nf_watches = Notification.objects.filter(content_type=ct_watch, profile=profile)
     nf_submissions = Notification.objects.filter(content_type=ct_submission, profile=profile)
     nf_journals = Notification.objects.filter(content_type=ct_journal, profile=profile)
+    nf_favourites = Notification.objects.filter(content_type=ct_favourite, profile=profile)
+    nf_sub_comments = Notification.objects.filter(content_type=ct_sub_comment, profile=profile)
     
+    if request.POST:
+        removable_ids = request.POST.getlist('remove')
+        if removable_ids:
+            notifs = Notification.objects.filter(id__in = removable_ids,
+                                                 profile = request.user)
+            if notifs:
+                notifs.delete()
+                return redirect('messages:index')
+        
     return render(request, template ,{'profile':profile,
                                       'nf_watches':nf_watches,
                                       'nf_submissions':nf_submissions,
                                       'nf_journals':nf_journals,
+                                      'nf_favourites':nf_favourites,
+                                      'nf_sub_comments':nf_sub_comments,
                                       'MIMES_AUDIO':MIMES_AUDIO,
                                       'MIMES_IMAGE':MIMES_IMAGE,
                                       'MIMES_FLASH':MIMES_FLASH})

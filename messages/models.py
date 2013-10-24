@@ -36,9 +36,10 @@ class Notification(models.Model):
 
 from profiles.models import ProfileWatch
 from journals.models import Journal
-from gallery.models import Submission #, Submission_Comment
+from gallery.models import Submission
 """
     Why post_save? pre_save has no ability to check whether the object is modified or created.
+    NOTE: THIS FUNCTION ONLY SENDS TO WATCHERS
 """
 def send_notifications(sender, instance, created, **kwargs):
     if created:
@@ -65,6 +66,36 @@ def send_notifications(sender, instance, created, **kwargs):
                                  )
             notif.save()
 
+
+from favourites.models import Favourite
+from gallery.models import Submission_Comment
+"""
+    This is for sending a notice from anyone (faved,commented, notes)
+"""
+def send_notification(sender, instance, created, **kwargs):
+    if created:
+        ct = ContentType.objects.get_for_model(sender)
+        author = instance.profile
+        
+        if sender == Favourite:
+            notif = Notification(
+                                 profile = instance.submission.profile,
+                                 author = instance.profile,
+                                 content_object = instance
+                                 )
+            notif.save()
+        
+        if sender == Submission_Comment:
+            notif = Notification(
+                                 profile = instance.submission.profile,
+                                 author = instance.profile,
+                                 content_object = instance
+                                 )
+            notif.save()
+            
 post_save.connect(send_notifications, ProfileWatch)
 post_save.connect(send_notifications, Journal)
 post_save.connect(send_notifications, Submission)
+# Signals that go without being watched.
+post_save.connect(send_notification, Favourite)
+post_save.connect(send_notification, Submission_Comment)

@@ -40,7 +40,7 @@
 	
 	{% if user.is_authenticated %}
 	<div class="submission_options">
-		<a href="{% url 'favourites:add' profile.username submission.id %}">+Add to favourites</a>
+		<a href="{% url 'favourites:add' profile.username submission.id %}">{% if favourite %}-Remove from favourites{% else %}+Add to favourites{% endif %}</a>
 		<a href="{{ submission.file.url }}">Download</a>
 	</div>
 	{% endif %}
