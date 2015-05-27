@@ -1,11 +1,22 @@
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from profiles.models import Profile, ProfileWatch
 
 
+class FTBaseForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super(FTBaseForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+
+class LoginForm(AuthenticationForm, FTBaseForm):
+    pass
+
     
-class RegisterForm(forms.ModelForm):
+class RegisterForm(forms.ModelForm, FTBaseForm):
 
     error_messages = {
         'duplicate_username': _("A user with that username already exists."),

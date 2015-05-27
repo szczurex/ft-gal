@@ -37,3 +37,5 @@ nosetests.xml
 #mine
 uploads
 db
+.idea
+local_settings.py

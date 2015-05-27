@@ -4,7 +4,6 @@
 -tag parsing
 -comments
 
-
 #WATCHES
 -basic following
 -customizable(gallery/scraps/journals)
@@ -29,4 +28,7 @@
 -profile comments
 
 #LAYOUT
--unify the CSS styles, it's getting messy
+-Build the thing on top of bootstrap.
+
+GLOBAL:
+-consider Celery to task emails and later on creation of notifications

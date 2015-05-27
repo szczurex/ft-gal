@@ -35,29 +35,6 @@ a.button{
 a.button.blue{background: #244371;}
 a.button.gray{background: #465568;}
 
-input[type=text], input[type=password]{
-	background: #93969D;
-	border-top: 1px solid #3B3E45;
-	border-left: 1px solid #3B3E45;
-	border-right: 1px solid#A3A8AE;
-	border-bottom: 1px solid #A3A8AE;
-	padding:2px;
-}
-
-/*input[type=text], input[type=password]{
-	background: #93969D;
-	border: 1px solid #A3A8AE;
-	box-shadow: 0 0 4px #000000 inset;
-    margin: 10px;
-    padding: 6px;
-}*/
-
-label{
-	color: #858B97;
-}
-
-
-
 form.modelform{
 	padding:20px;
 }

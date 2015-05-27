@@ -8,8 +8,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'furtown.views.home', name='home'),
-    # url(r'^furtown/', include('furtown.foo.urls')),
+    # url(r'^$', 'ft.views.home', name='home'),
+    # url(r'^ft/', include('ft.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -20,6 +20,6 @@ urlpatterns = patterns('',
     url(r'^favourites/', include('favourites.urls', namespace="favourites")),
     url(r'^gallery/', include('gallery.urls', namespace="gallery")),
     url(r'^journals/', include('journals.urls', namespace="journals")),
-    url(r'^messages/', include('messages.urls', namespace="messages")),
+    url(r'^messages/', include('msg.urls', namespace="messages")),
     url(r'^', include('main.urls', namespace="main")),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

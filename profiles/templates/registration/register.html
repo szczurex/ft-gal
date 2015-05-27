@@ -1,13 +1,12 @@
 {% extends "main/base.html" %}
-{% load staticfiles %}
-
-{% block css_scripts %}
-	{{ block.super }}
-	<link rel="stylesheet" type="text/css" href="{% static 'profiles/style.css' %}" />
-{% endblock %}
 
 {% block content %}
-
-	{% include "main/form.html" with form=form title="Register an accout" %}
-
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Register an account</h1>
+        </div>
+        <div class="panel-body">
+            {% include "main/form.html" with form=form %}
+        </div>
+    </div>
 {% endblock %}

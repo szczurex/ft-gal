@@ -1,0 +1,14 @@
+ul#messages_submissions{
+	overflow: hidden;
+}
+
+ul#messages_submissions li{
+	float:left;
+	text-align: center;
+}
+
+ul#messages_submissions .submission_item{
+	padding:0 10px;
+	width:150px;
+	height: 150px;
+}

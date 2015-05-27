@@ -1,4 +1,4 @@
-# Django settings for furtown project.
+# Django settings for ft project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -104,10 +104,10 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-ROOT_URLCONF = 'furtown.urls'
+ROOT_URLCONF = 'ft.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'furtown.wsgi.application'
+WSGI_APPLICATION = 'ft.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -133,7 +133,7 @@ INSTALLED_APPS = (
     'favourites',
     'gallery',
     'journals',
-    'messages',
+    'msg',
     
     #external
     'sorl.thumbnail',
@@ -181,3 +181,10 @@ DEBUG_TOOLBAR_CONFIG = {
 # custom settings for this project
 AUTH_USER_MODEL = 'profiles.Profile'
 LOGIN_URL = '/profiles/login'
+LOGIN_REDIRECT_URL = '/profiles/'
+
+try:
+    from local_settings import *
+    print('Loaded local settings.')
+except:
+    print('Could not load local settings.')

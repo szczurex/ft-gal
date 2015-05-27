@@ -8,7 +8,7 @@ from journals.models import Journal
 from gallery.models import Submission
 from datetime import datetime
 from django.utils import timezone
-from messages.views import queue_message
+from msg.views import queue_message
 from gallery.validators import MIMES_AUDIO, MIMES_IMAGE, MIMES_FLASH
 
 @login_required

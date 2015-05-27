@@ -1,5 +1,38 @@
 {% extends "main/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-<p>This is the index page.</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">Recent artwork</div>
+        <div class="panel-body">
+            {% for x in '012345678901'|make_list %}
+                <a href="#">
+                    <img src="{% static 'main/img/pi.png' %}" alt="..." class="img-thumbnail">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Recent writing</div>
+        <div class="panel-body">
+            {% for x in '012345678901'|make_list %}
+                <a href="#">
+                    <img src="{% static 'main/img/pf.png' %}" alt="..." class="img-thumbnail">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Recent music</div>
+        <div class="panel-body">
+            {% for x in '012345678901'|make_list %}
+                <a href="#">
+                    <img src="{% static 'main/img/pm.png' %}" alt="..." class="img-thumbnail">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
